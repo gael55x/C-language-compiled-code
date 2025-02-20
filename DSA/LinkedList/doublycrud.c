@@ -7,6 +7,17 @@ typedef struct Node {
     struct Node * next; 
 } Node; 
 
+// find length of linkedlist
+int length(struct Node *p){
+    int l = 0; 
+    while (p){
+        l++; 
+        p=p->next; 
+    }
+    return l; 
+}
+
+
 Node * create(int A[], int n){
     Node *first, * t, * last; 
     // initialize first node
@@ -33,6 +44,31 @@ Node * create(int A[], int n){
 }
 
 // insert 
+Node * Insert(struct Node * first, int idx, int x){
+    struct Node *t, *p=first; 
+    if (idx < 0 || idx > length(first))return first; 
+    if (idx == 0){
+        t = (struct Node *)malloc(sizeof(struct Node)); 
+        t->data = x; 
+        t->prev = NULL; 
+        t->next = first;
+        
+        // update old head node if it exist
+        if (first) first->prev = t; 
+        
+        return t; 
+    } else {
+        for (int i = 0; i < idx -1; i++) p = p->next; 
+        t = (struct Node *)malloc(sizeof(struct Node)); 
+        t->data = x; 
+        t->prev = p; 
+        t->next = p->next; 
+        if (p->next) p->next->prev = t; 
+        p->next = t; 
+
+        return first; 
+    }
+}
 
 // display
 void display(struct Node *p){
@@ -43,20 +79,19 @@ void display(struct Node *p){
     printf("\n"); 
 }
 
-// find length of linkedlist
-int length(struct Node *p){
-    int l = 0; 
-    while (p){
-        l++; 
-        p=p->next; 
-    }
-    return l; 
-}
-
 int main(){
     int A[] = {10,20,30,40,50,60}; 
-    create(A, 6); 
-    printf("\nLength is: %d\n", length(first)); 
-    display(first); 
+    Node * first = create(A, 6);
+
+    printf("Length before insertion: %d\n", length(first));
+    display(first);
+
+    first = Insert(first, 2, 25);
+    printf("After inserting 25 at index 2:\n");
+    display(first);
+
+    first = Insert(first, 0, 5);
+    printf("After inserting 5 at index 0:\n");
+    display(first);
     return 0;
 }
