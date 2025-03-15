@@ -30,7 +30,7 @@ Node * insert(Node * head, int x){
 
     // if we insert at beginning
     if ( x < head->val){
-        new->prev = head; 
+        new->next = head; 
         head->prev = new; 
         return new;  
     }
@@ -64,7 +64,7 @@ Node * insertStack(Node * head, int x){
     if (head != NULL){
         head->prev = new; 
     }
-    return head; 
+    return new; 
 }
 
 // insert LIFO style 
