@@ -86,7 +86,7 @@ Node * delete(Node * head, int x){
     // case delete head node in middle
     if (temp == head){
         head = head->next; 
-        if (head != NULL) head->prev = NULL: 
+        if (head != NULL) head->prev = NULL; 
         free(temp); 
         return head; 
     } 
@@ -118,6 +118,45 @@ void display(Node * head){
 }
 
 
-int main{   
-    
+int main(){   
+    Node * head = NULL; 
+    int choice, val; 
+
+    while (1){
+        printf("1. Insert (Sorted Order)\n"); 
+        printf("2. Insert (STack based) \n"); 
+        printf("3. DELETE \n"); 
+        printf("4. Display \n"); 
+        printf("5. Exit\n");
+        printf("Enter your choices: "); 
+        scanf("%d", &choice); 
+
+        switch(choice){
+            case 1: 
+                printf("Enter the value to be inserted (sorted): "); 
+                scanf("%d", &val); 
+                head = insert(head, val); 
+                break; 
+            case 2: 
+                printf("Enter the value to be inserted (stacked based): "); 
+                scanf("%d", &val); 
+                head = insertStack(head, val); 
+                break; 
+            case 3: 
+                printf("Enter the value to be deleted: "); 
+                scanf("%d", &val); 
+                head = delete(head, val); 
+                break; 
+            case 4: 
+                display(head); 
+                break; 
+            case 5:
+                printf("Exiting program..\n"); 
+                return 0;  
+            default: 
+                printf("Invalid \n"); 
+        }
+
+    }
+    return 0; 
 }
