@@ -145,6 +145,40 @@ void postorderIterative(BTreeNode * root){
     freeStack(stack2); 
 }
 
+// extract da inorder successor for before deletion of root node (returned node will be the replacement) 
+BTreeNode * findMin(BTreeNode * root){
+    while (root && root->left != NULL){
+        root = root->left; 
+    }
+    return root; 
+}
+
+BTreeNode * deleteNode(BTreeNode * root, int key){
+    if (root == NULL){
+        return root; 
+    }
+
+    if (key < root->data) root->left = deleteNode(root->left, key); 
+    else if (key > root->data) root->right = deleteNode(root->right, key); 
+    else {
+        // case : 1 node only
+        if (root->left == NULL){
+            BTreeNode * t = root->right; 
+            free(root); 
+            return t; 
+        }
+        else if (root->right == NULL){
+            BTreeNode * t = root->left; 
+            free(root); 
+            return t; 
+        }
+        BTreeNode * t = findMin(root->right); 
+        root->data = t->data; 
+        root->right = deleteNode(root->right, t->data); 
+    }
+    return root; 
+}
+
 
 int main(){
     BTreeNode* root = NULL; 
@@ -182,6 +216,25 @@ int main(){
     printf("Iterative postorder traversal: "); 
     postorderIterative(root); 
     printf("\n"); 
+
+
+    // printf("Deleting node with value 20\n");
+    // root = deleteNode(root, 20);
+    // printf("Inorder traversal after deleting 20: ");
+    // inorder(root);
+    // printf("\n");
+
+    printf("Deleting node with value 30\n");
+    root = deleteNode(root, 30);
+    printf("Inorder traversal after deleting 30: ");
+    inorder(root);
+    printf("\n");
+
+    printf("Deleting node with value 50\n");
+    root = deleteNode(root, 50);
+    printf("Inorder traversal after deleting 50: ");
+    inorder(root);
+    printf("\n");
 
     return 0; 
 
