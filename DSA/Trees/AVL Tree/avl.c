@@ -58,6 +58,28 @@ Node * LR(Node * y){
 }
 
 // for insert
+Node * insert(Node * node, int key){
+    if(!node){
+        return newNode(key); 
+    }
+
+    if (key < node->key) node->left = insert(node->left, key); 
+    else if (key > node->key) node->right = insert(node->right, key); 
+    else return node; 
+
+    node ->height = 1 + max(height(node->left), height(node->right)); 
+
+    int b = getB(node); 
+    //LL
+    if (b > 1 && key < node->left->key) return RR(node); 
+    //RR
+    if (b < -1 && key > node->right->key) return  LR(node); 
+
+    // TODO: LR & RL
+
+    return node; 
+
+}
 
 // for verification 
 void inorder(Node * root){
