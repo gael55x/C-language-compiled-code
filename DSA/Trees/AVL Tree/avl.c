@@ -57,4 +57,15 @@ Node * LR(Node * y){
     return y; 
 }
 
+// for insert
+
+// for verification 
+void inorder(Node * root){
+    if (root){
+        inorder(root->left); 
+        printf("%d ", root->key); 
+        inorder(root->right); 
+    }
+}
+
 
