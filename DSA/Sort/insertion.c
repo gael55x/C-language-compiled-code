@@ -1,6 +1,11 @@
 #include <stdio.h> 
 
-// Runtime O(n^2)
+// Min Runtime O(n)
+// Max Runtime O(n^2)
+
+// min swap O(1)
+// max swap O(n^2)
+
 // No. of passes = (n-1) 
 // Space complexity O(n)
 void swap(int * a, int * b){
