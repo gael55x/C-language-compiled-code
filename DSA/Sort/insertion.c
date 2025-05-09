@@ -1,5 +1,8 @@
 #include <stdio.h> 
 
+// Runtime O(n^2)
+// No. of passes = (n-1) 
+// Space complexity O(n)
 void swap(int * a, int * b){
     int temp = *a; 
     *a = *b; 
@@ -8,7 +11,15 @@ void swap(int * a, int * b){
 
 
 void Insertion(int arr[], int n){
-
+    for (int i = 0; i < n; i++){
+        int j = i - 1;
+        int x = arr[i];  
+        while (j > -1 && arr[j] > x){
+            arr[j + 1] = arr[j]; 
+            j--; 
+        }
+        arr[j+1] = x; 
+    }
 }
 
 int main(){
