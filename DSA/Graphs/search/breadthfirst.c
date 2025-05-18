@@ -55,5 +55,8 @@ void bfs(int start) {
         int curr = dequeue(&q);
         printf("%d ", curr);
         
+        Node * temp = adjList[curr];
+        while (temp != NULL) {
+        }
     }
 }
