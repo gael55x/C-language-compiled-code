@@ -19,4 +19,23 @@ void addEdge(int src, int dest) {
 }
 
 
-void bfs()
+void dfs(int start){
+    
+}
+
+int main(){
+    for (int i = 0; i < MAX_NODES; i++){
+        adjList[i] = NULL; 
+        visited[i] = false; 
+    }
+
+    addEdge(0, 1);
+    addEdge(0, 2);
+    addEdge(1, 3);
+    addEdge(1, 4);
+    addEdge(2, 5);
+    addEdge(2, 6);
+
+    dfs(0); 
+    return 0; 
+}
