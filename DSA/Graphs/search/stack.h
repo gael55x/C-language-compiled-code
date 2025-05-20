@@ -1,6 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
+#define MAX_NODES 100
 int stack[MAX_NODES];
 int top = -1; 
 

@@ -20,7 +20,16 @@ void addEdge(int src, int dest) {
 
 
 void dfs(int start){
-    
+    if (visited[start]) return;
+
+    visited[start] = true;
+    printf("%d ", start); 
+    Node * temp = adjList[start];
+    while (temp != NULL){
+        int neighbor = temp -> vertex; 
+        dfs(neighbor);; 
+        temp = temp -> next; 
+    }
 }
 
 int main(){
