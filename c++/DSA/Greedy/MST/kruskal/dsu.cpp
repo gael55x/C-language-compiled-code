@@ -33,6 +33,8 @@ bool DSU::unite(int x, int y){
     else if (rank[rootX] > rank[rootY]) {
         parent[rootY] = rootX; 
     } else {
+        // if ranks are equal, choose one as the parent and increment the rank of the chosen parent 
+        // it doesnt matter which one we choose, but we need to increment the rank of the chosen parent 
         parent[rootY] = rootX; 
         rank[rootX]++; 
     }
